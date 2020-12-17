@@ -11,7 +11,7 @@ const app = express()
 app.use(express.json()); // add body key to req
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:8080" // if there multiple frontend url give them in commma separated
+    origin: "*" // if there multiple frontend url give them in commma separated
 }));
 app.use(session({ 
     secret: session_secret,
@@ -156,6 +156,10 @@ app.get('/logout', (req, res) => {
 app.get('/userinfo', AuthMiddleware, async (req, res) => {
     const user = await userModel.findById(req.session.userId)
     res.send({ userName: user.userName })
+})
+
+app.get("/", (req, res) => {
+    res.send("Server works");
 })
 
 app.listen(process.env.PORT);
