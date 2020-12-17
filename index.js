@@ -158,4 +158,4 @@ app.get('/userinfo', AuthMiddleware, async (req, res) => {
     res.send({ userName: user.userName })
 })
 
-app.listen(3000, () => console.log(`App listening on port 3000!`))
+app.listen(process.env.PORT);
